@@ -4,7 +4,7 @@ import React from 'react';
 import chroma from 'chroma-js';
 
 
-const ColorCard = ({ color, onRemove }) => {
+const ColorCard = ({ color, onRemove }: { color: string; onRemove: () => void }) => {
   const cardStyle = {
     backgroundColor: color,
   };
@@ -19,7 +19,7 @@ const ColorCard = ({ color, onRemove }) => {
     backgroundColor: oppositeColor, // Set button background color to the opposite color
   };
 
-  function calculateOppositeColor(cssColor) {
+  function calculateOppositeColor(cssColor: string) {
     try {
       chroma
       const chromaColor = chroma(cssColor);
@@ -34,7 +34,7 @@ const ColorCard = ({ color, onRemove }) => {
   }
   
 
-  function isBlackColor(hexColor) {
+  function isBlackColor(hexColor: string) {
     // Check if the color is black
     return hexColor === '#000000';
   }
@@ -44,7 +44,7 @@ const ColorCard = ({ color, onRemove }) => {
       <button
         className="glass p-2 rounded-sm cursor-pointer"
         
-        onClick={() => onRemove(color)}
+        onClick={() => (onRemove as (color: string) => void)(color)}
       >
         X
       </button>

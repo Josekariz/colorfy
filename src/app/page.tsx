@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from 'react';
+import React, { useState, ChangeEvent } from 'react';
 import ColorCard from '@/components/ColorCard';
 
 
@@ -7,9 +7,9 @@ const colorPattern = /#(?:[0-9a-fA-F]{3,6})|\b(AliceBlue|AntiqueWhite|Aqua|Aquam
 
 export default function Home() {
   const [inputValue, setInputValue] = useState('');
-  const [colorTokens, setColorTokens] = useState([]);
+  const [colorTokens, setColorTokens] = useState<string[]>([]); // Specify the type as string[]
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const inputText = e.target.value;
     const tokens = Array.from(new Set(inputText.match(colorPattern))).map((match) =>
       match.trim()
@@ -19,7 +19,7 @@ export default function Home() {
     setColorTokens(tokens);
   };
 
-  const removeColor = (color) => {
+  const removeColor = (color: string) => { // Specify the type as string
     setColorTokens((prevTokens) => prevTokens.filter((token) => token !== color));
     setInputValue((prevInput) => prevInput.replace(color, ''));
   };
