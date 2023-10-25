@@ -35,8 +35,8 @@ export default function Home() {
         <div className="mx-auto">
           <input
             type="text"
-            placeholder="Type here"
-            className="input input-bordered rounded-sm max-w-xl"
+            placeholder="Put colors and get mixy"
+            className=" p-4 input input-bordered rounded-sm max-w-2xl"
             value={inputValue}
             onChange={handleInputChange}
           />
