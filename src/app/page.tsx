@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import ColorCard from '@/components/ColorCard';
 
 
-const colorPattern = /#(?:[0-9a-fA-F]{3,6})|\b(red|blue|green|yellow|purple|pink|orange|black|white|gray)\b|rgba?\([^)]*\)|hsla?\([^)]*\)/gi;
+const colorPattern = /#(?:[0-9a-fA-F]{3,6})|\b(red|blue|green|yellow|purple|pink|orange|black|cyan|white|gray|violet|indigo)\b|rgba?\([^)]*\)|hsla?\([^)]*\)/gi;
 
 export default function Home() {
   const [inputValue, setInputValue] = useState('');
@@ -30,8 +30,8 @@ export default function Home() {
   };
 
   return (
-    <>
-      <div className="flex items-center min-h-screen">
+    <div className='grid  grid-rows-2'>
+      <div className="flex items-center min-h-48">
         <div className="mx-auto">
           <input
             type="text"
@@ -53,7 +53,7 @@ export default function Home() {
           ))}
         </div>
       )}
-    </>
+    </div>
   );
 }
 
