@@ -20,11 +20,11 @@ const config: Config = {
 
           "base-100": "#ffffff",
 
-          info: "#87b1d9",
+          info: "#2563eb",
 
-          success: "#1d875c",
+          success: "#16a34a",
 
-          warning: "#957c0f",
+          warning: "#ef4444",
 
           error: "#fb4e37",
         },
