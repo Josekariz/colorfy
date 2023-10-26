@@ -40,7 +40,7 @@ const ColorCard = ({ color, onRemove }: { color: string; onRemove: () => void })
   }
 
   return (
-    <div className="flex flex-row-reverse card w-40 min-h-16 relative rounded-md border truncate max-w-xl" style={cardStyle}>
+    <div className="flex flex-row-reverse card w-40 min-h-16 relative rounded-md border overflow-hidden" style={cardStyle}>
       <button
         className="glass p-2 rounded-sm cursor-pointer"
         
