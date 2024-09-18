@@ -3,23 +3,18 @@ import Link from 'next/link';
 
 const Navbar = () => {
   return (
-    <div className="navbar glass bg-info mb-2">
+    <nav className="navbar glass bg-white bg-opacity-90 border-b border-gray-300 shadow-md mb-4 py-3 px-6 flex items-center justify-between">
       <div className="flex-1">
-        <a className="btn btn-ghost normal-case text-xl" href='/'>Colorfy</a>
+        <Link href="/" className="text-2xl font-bold text-gray-800 hover:text-gray-600 transition-colors duration-300">
+          Colorfy
+        </Link>
       </div>
-      <div className="flex gap-2">
-   
-                         
-              <div>
-                <Link href="/docs">Docs</Link>
-              </div>
-              <div>
-
-                <Link href="/devs">Devs</Link>
-              </div>
-   
+      <div className="flex gap-6">
+        <Link href="/docs" className="text-lg text-gray-800 hover:text-gray-600 transition-colors duration-300">
+          Docs
+        </Link>
       </div>
-    </div>
+    </nav>
   );
 }
 

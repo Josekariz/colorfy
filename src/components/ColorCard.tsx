@@ -1,60 +1,66 @@
-"use client"
-
-import React from 'react';
+import React, { useState, useMemo } from 'react';
 import chroma from 'chroma-js';
 
+interface ColorCardProps {
+  color: string;
+  onRemove: (color: string) => void;
+}
 
-const ColorCard = ({ color, onRemove }: { color: string; onRemove: () => void }) => {
-  const cardStyle = {
-    backgroundColor: color,
-  };
+const ColorCard: React.FC<ColorCardProps> = ({ color, onRemove }) => {
+  const [copied, setCopied] = useState(false);
 
-  const oppositeColor = isBlackColor(color) ? '#ffffff' : calculateOppositeColor(color);
-
-  const textStyles = {
-    color: oppositeColor, // Set text color to the opposite color
-  };
-
-  const buttonStyle = {
-    backgroundColor: oppositeColor, // Set button background color to the opposite color
-  };
-
-  function calculateOppositeColor(cssColor: string) {
+  const { backgroundColor, textColor, displayColor } = useMemo(() => {
     try {
-      chroma
-      const chromaColor = chroma(cssColor);
-      // Calculate the opposite color by inverting
-      const invertedColor = chromaColor.luminance() > 0.5 ? chromaColor.darken() : chromaColor.brighten();
-      // Convert to a CSS color string
-      return invertedColor.css();
+      const chromaColor = chroma(color);
+      const textColor = chromaColor.luminance() > 0.5 ? 'black' : 'white';
+      const isNamedColor = color.toLowerCase() === chromaColor.name().toLowerCase();
+      return { 
+        backgroundColor: color, 
+        textColor,
+        displayColor: isNamedColor ? color : chromaColor.hex(),
+      };
     } catch (error) {
-      console.error('Error calculating opposite color:', error);
-      return cssColor; // Default to returning the input color on error
+      console.error('Invalid color:', color);
+      return { 
+        backgroundColor: 'gray', 
+        textColor: 'white',
+        displayColor: 'Invalid Color',
+      };
     }
-  }
-  
+  }, [color]);
 
-  function isBlackColor(hexColor: string) {
-    // Check if the color is black
-    return hexColor === '#000000';
-  }
+  const handleCopy = () => {
+    navigator.clipboard.writeText(color).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  };
 
   return (
-    <div className="flex flex-row-reverse card w-40 min-h-16 relative rounded-md border overflow-hidden" style={cardStyle}>
+    <div 
+      className="relative overflow-hidden rounded-lg shadow-md transition-transform hover:scale-105 cursor-pointer"
+      style={{ backgroundColor }}
+      onClick={handleCopy}
+    >
       <button
-        className="glass p-2 rounded-sm cursor-pointer"
-        
-        onClick={() => (onRemove as (color: string) => void)(color)}
+        className="absolute top-1 right-1 p-1 rounded-full bg-gray-200 bg-opacity-50 hover:bg-opacity-75 transition-colors"
+        onClick={(e) => {
+          e.stopPropagation();
+          onRemove(color);
+        }}
+        aria-label="Remove color"
       >
-        X
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+        </svg>
       </button>
-      <div className="card-body">
-        <p className="card-title text-center" style={textStyles}>
-          {color}
+      <div className="p-4">
+        <p className="text-center font-semibold" style={{ color: textColor }}>
+          {copied ? '✅ Copied!' : displayColor}
         </p>
       </div>
     </div>
   );
-}
+};
 
-export default ColorCard;
+export default React.memo(ColorCard);
