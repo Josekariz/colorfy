@@ -5,29 +5,23 @@ const Docs = () => {
     <div className="bg-white text-gray-800 min-h-screen">
       <main className="container mx-auto px-4 py-8">
         <a 
-            href="https://github.com/Josekariz/colorfy" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="hover:text-blue-600 text-lg"
-          >
-            
-          
-        <h1 className="text-4xl font-bold mb-6">Colorfy 🌈</h1>
+          href="https://github.com/Josekariz/colorfy" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          className="hover:text-blue-600 text-lg"
+        >
+          <h1 className="text-4xl font-bold mb-6">Colorfy 🌈</h1>
         </a>
         <p className="text-lg mb-2">
-          Colorfy is a powerful open-source applicaion designed for managing and generating color palettes. It helps developers tokenize colors from CSS properties, create custom color palettes, and generate random palettes for various uses. Whether you’re working on a design system or just need some color inspiration, Colorfy provides an intuitive interface and flexible functionality. 
-          
-          
+          Colorfy is a powerful open-source application designed for managing and generating color palettes. It helps developers tokenize colors from CSS properties, create custom color palettes, and generate random palettes for various uses. Whether you’re working on a design system or just need some color inspiration, Colorfy provides an intuitive interface and flexible functionality. 
         </p>
         <a 
-            href="https://github.com/Josekariz/colorfy" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="text-blue-600 text-lg mb-6"
-          >
-            
-          
-            Colorfy 🌈 Github repository.
+          href="https://github.com/Josekariz/colorfy" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          className="text-blue-600 text-lg mb-6"
+        >
+          Colorfy 🌈 Github repository.
         </a>
 
         <h2 className="text-2xl font-semibold my-2 mb-4">Table of Contents</h2>
